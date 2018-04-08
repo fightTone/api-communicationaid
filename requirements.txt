@@ -1,0 +1,4 @@
+SQLAlchemy
+Flask-sqlAlchemy
+psycopg2
+Flask
