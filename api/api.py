@@ -50,7 +50,6 @@ def update_parentinfo(acc_id):
 	db.session.commit()
 	return jsonify({'message' : 'success!'})
 
-
 @app.route('/api/signup', methods=['POST'])
 def createuser():
 	data = request.get_json()
@@ -76,4 +75,3 @@ def login_api():
 		token = jwt.encode({'account_id': Account.acc_id, 'exp' : datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, app.config['SECRET_KEY'])
 		return jsonify({'status': 'ok', 'token': token.decode('UTF-8')})
 	return make_response('Could not verify', {'WWW-Authenticate' : 'Login required'})
-
