@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from app import app
 
-app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:regards@localhost/db'
 app.config['SECRET_KEY'] = 'hard to guess string'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
