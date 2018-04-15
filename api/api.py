@@ -8,6 +8,7 @@ import json
 import os
 from werkzeug.security import generate_password_hash, check_password_hash
 
+#retrieve data for parent,child and teacher
 
 @app.route('/api/user/<acc_id>', methods=['GET'])
 def getoneuser(acc_id):
@@ -19,6 +20,44 @@ def getoneuser(acc_id):
     user_data['username'] = user.username
     user_data['email'] = user.email
     user_data['acc_type'] = user.acc_type
+    return jsonify({'user': user_data})
+
+@app.route('/api/teacher/<acc_id>', methods=['GET'])
+def getinfoteacher(acc_id):
+    user = Teacher.query.filter_by(acc_id=acc_id).first()
+    if not user:
+        return jsonify({'message: "no user found"'})
+    user_data = {}
+    user_data['fname_t'] = user.fname_t
+    user_data['lname_t'] = user.lname_t
+	user_data['bday_t'] = user.bday_t
+	user_data['specialty'] = user.specialty
+	user_data['tel_num'] = user.tel_num
+	user_data['add_t'] = user.add_t
+    return jsonify({'user': user_data})
+
+@app.route('/api/parent/<acc_id>', methods=['GET'])
+def getinfoteacher(acc_id):
+    user = Parent.query.filter_by(acc_id=acc_id).first()
+    if not user:
+        return jsonify({'message: "no user found"'})
+    user_data = {}
+    user_data['fname_p'] = user.fname_p
+    user_data['lname_p'] = user.lname_p
+    user_data['bday_p'] = user.bday_p
+	user_data['add_p'] = user.add_p
+    return jsonify({'user': user_data})
+
+@app.route('/api/child/<c_id>', methods=['GET'])
+def getinfoteacher(c_id):
+    user = Child.query.filter_by(c_id=c_id).first()
+    if not user:
+        return jsonify({'message: "no user found"'})
+    user_data = {}
+    user_data['fname_c'] = user.fname_c
+    user_data['lname_c'] = user.lname_c
+    user_data['bday_c'] = user.bday_c
+	user_data['diagnosis'] = user.diagnosis
     return jsonify({'user': user_data})
 
 def token_required(f):
