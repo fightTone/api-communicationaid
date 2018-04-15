@@ -15,7 +15,7 @@ from app import app
 def getoneuser(acc_id):
     user = Account.query.filter_by(acc_id=acc_id).first()
     if not user:
-        return jsonify({'message: "no user found"'})
+        return jsonify({'message': "no user found"})
     user_data = {}
     user_data['acc_id'] = user.acc_id
     user_data['username'] = user.username
@@ -27,7 +27,7 @@ def getoneuser(acc_id):
 def getinfoteacher(acc_id):
     user = Teacher.query.filter_by(acc_id=acc_id).first()
     if not user:
-        return jsonify({'message: "no user found"'})
+        return jsonify({'message': "no user found"})
     user_data = {}
     user_data['fname_t'] = user.fname_t
     user_data['lname_t'] = user.lname_t
@@ -41,7 +41,7 @@ def getinfoteacher(acc_id):
 def getinfoparent(acc_id):
     user = Parent.query.filter_by(acc_id=acc_id).first()
     if not user:
-        return jsonify({'message: "no user found"'})
+        return jsonify({'message': "no user found"})
     user_data = {}
     user_data['fname_p'] = user.fname_p
     user_data['lname_p'] = user.lname_p
@@ -53,7 +53,7 @@ def getinfoparent(acc_id):
 def getinfochild(c_id):
     user = Child.query.filter_by(c_id=c_id).first()
     if not user:
-        return jsonify({'message: "no user found"'})
+        return jsonify({'message': "no user found"})
     user_data = {}
     user_data['fname_c'] = user.fname_c
     user_data['lname_c'] = user.lname_c
