@@ -37,13 +37,42 @@ def token_required(f):
         return f(current_user, *args,**kwargs)
     return decorated
 
-@app.route('/api/parent/editprofile/<int:acc_id>', methods=['POST']) #this api can also be used in editing other profiles(i.e teacher, child)
+    #edit profile -----------------------------
+
+@app.route('/api/parent/editprofile/<int:acc_id>', methods=['POST']) #this api is for editing parent's profile 
 def update_parentinfo(acc_id):
 # @token_required
 	Parent.query.filter_by(acc_id=int(acc_id)).first()
 	data = request.get_json()
 
 	output = Parent(fname_p = data['fname_p'], lname_p = data['lname_p'], bday_p = data['bday_p'], add_p = data['add_p'])
+
+	output = db.session.merge(output)
+	db.session.add(output)
+	db.session.commit()
+	return jsonify({'message' : 'success!'})
+
+
+@app.route('/api/child/editprofile/<int:c_id>', methods=['POST']) #this api is for editing child's profile
+def update_childinfo(c_id):
+# @token_required
+	Child.query.filter_by(acc_id=int(c_id)).first()
+	data = request.get_json()
+
+	output = Child(fname_c = data['fname_c'], lname_c = data['lname_c'], bday_c = data['bday_c'], diagnosis = data['diagnosis'])
+
+	output = db.session.merge(output)
+	db.session.add(output)
+	db.session.commit()
+	return jsonify({'message' : 'success!'})
+
+@app.route('/api/teacher/editprofile/<int:acc_id>', methods=['POST']) #this api is for editing teacher's profile
+def update_teacherinfo(c_id):
+# @token_required
+	Teacher.query.filter_by(acc_id=int(c_id)).first()
+	data = request.get_json()
+
+	output = Teacher(fname_t = data['fname_t'], lname_t = data['lname_t'], bday_t = data['bday_c'], specialty = data['specialty'],tel_num = data['tel_num'] add_t = data['add_t'])
 
 	output = db.session.merge(output)
 	db.session.add(output)
