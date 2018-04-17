@@ -166,6 +166,7 @@ class Items(db.Model):
 
 class Progress(db.Model):
     prog_num = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(200))
     details = db.Column(db.String(500))
     prog_date = db.Column(db.Date)
     prog_time = db.Column(db.Time)
