@@ -1,20 +1,19 @@
-
 from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask import render_template, request, url_for,redirect,send_from_directory
 from sqlalchemy import *
-from models import *
+import models
 import json
 import os
 from werkzeug.security import generate_password_hash, check_password_hash
-from app import app
+# from app import app
 
-app = Flask(__name__)
+# app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:walakokahibaw@localhost/db'
-app.config['SECRET_KEY'] = 'hard to guess string'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
-db = SQLAlchemy(app)
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:walakokahibaw@localhost/db'
+# app.config['SECRET_KEY'] = 'hard to guess string'
+# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+# db = SQLAlchemy(app)
 #retrieve data for parent,child and teacher
 
 @app.route('/api/user/<acc_id>', methods=['GET'])
