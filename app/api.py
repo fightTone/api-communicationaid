@@ -2,12 +2,13 @@ from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask import render_template, request, url_for,redirect,send_from_directory
 from sqlalchemy import *
-import models
+from models import *
+from app import *
 import json
 import os
 from werkzeug.security import generate_password_hash, check_password_hash
 # from app import app
-
+APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 # app = Flask(__name__)
 
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:walakokahibaw@localhost/db'
